@@ -1,0 +1,15 @@
+<a class="btn btn-secondary" (click)="addUser()">Add users</a>
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Username</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.username}}</td>
+    <td><a class="btn btn-secondary" (click)="editUser(user)">Edit</a></td>
+  </tr>
+</table>
