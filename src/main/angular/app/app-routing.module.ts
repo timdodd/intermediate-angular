@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {UserListComponent} from "./components/user-list/user-list.component";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {UserDetailComponent} from "./components/user-detail/user-detail.component";
+import {UserStepperComponent} from "./components/user-stepper/user-stepper.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'users/create',
     component: UserDetailComponent
+  },
+  {
+    path: 'users/stepper',
+    component: UserStepperComponent
   },
   {
     path: 'users/:userId',

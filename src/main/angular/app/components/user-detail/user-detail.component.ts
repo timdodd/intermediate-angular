@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-user-detail',
@@ -11,7 +12,7 @@ import {Subscription} from "rxjs";
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
 
-  formGroup = this.createFormGroup();
+  formGroup = this.createUserFormGroup();
   subscriptions: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
@@ -28,7 +29,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  save(): void {
+  addPhone(): void {
+    this.phoneFormArray.push(this.createPhoneFormGroup());
+  }
+
+  saveUser(): void {
     const valueToSave = this.formGroup.value;
     this.userService.save(valueToSave)
       .subscribe(_ => this.router.navigateByUrl("/users"), httpError => {
@@ -36,8 +41,18 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       });
   }
 
+  get phoneFormArray(): FormArray {
+    return this.formGroup.get('phones') as FormArray;
+  }
+
   private refreshUser(userId: string): void {
-    this.userService.get(userId).subscribe(user => this.formGroup.patchValue(user));
+    this.userService.get(userId).subscribe(user => this.setFormValue(user));
+  }
+
+  private setFormValue(user: User): void {
+    this.formGroup.reset();
+    user.phones.forEach(_ => this.phoneFormArray.push(this.createPhoneFormGroup()));
+    this.formGroup.patchValue(user);
   }
 
   private subscribeToRouteParamChanges(): void {
@@ -53,11 +68,22 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     )
   }
 
-  private createFormGroup(): FormGroup {
+  private createUserFormGroup(): FormGroup {
     return this.formBuilder.group({
+      userId: null,
       firstName: null,
       lastName: null,
-      username: null
+      username: null,
+      phones: this.formBuilder.array([])
+    });
+  }
+
+  private createPhoneFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      phoneId: null,
+      userId: null,
+      phoneNumber: null,
+      phoneType: null
     });
   }
 }

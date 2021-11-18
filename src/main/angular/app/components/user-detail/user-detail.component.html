@@ -13,8 +13,29 @@
     <label>Username</label>
     <input class="input" formControlName="username">
   </div>
+
+
   <div>
-    <button class="btn btn-primary" (click)="save()">Save</button>
+    <button class="btn btn-secondary" (click)="addPhone()">Add phone</button>
   </div>
+
+  <div formArrayName="phones" *ngFor="let phoneFormGroup of phoneFormArray.controls; let i = index">
+    <div class="flex" [formGroupName]="i">
+      <div>
+        <label>Phone number</label>
+        <input class="input" formControlName="phoneNumber">
+      </div>
+      <div>
+        <label>Phone type</label>
+        <input class="input" formControlName="phoneType">
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-primary" (click)="saveUser()">Save</button>
+  </div>
+
+
 </form>
 

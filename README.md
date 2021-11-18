@@ -11,5 +11,6 @@ Best practices:
   naming conventions, 
   component/service structures 
   constructor vs ngOnInit.
-Use of 3rd party libraries.
+Use of 3rd party libraries. 
 Testing components: services, pipes, guards, etc.
+
