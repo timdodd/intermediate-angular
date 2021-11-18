@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ContentChildren, QueryList} from '@angular/core';
+import {AfterContentInit, Component, ContentChildren, Injector, QueryList} from '@angular/core';
 import {StepperService} from "../stepper.service";
 import {StepDirective} from "../step/step.directive";
 import {Step} from "../step/step.model";
@@ -21,7 +21,6 @@ export class StepperComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     const currentStep = this.steps?.first;
     if (currentStep) {
-      console.log(currentStep.component);
       this.stepperService.setCurrentStepComponent(currentStep.component as Step);
     }
 

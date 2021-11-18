@@ -1,6 +1,16 @@
+import {Observable} from "rxjs";
+
 export interface Step {
 
-  next(): Promise<void>;
+  next?(): Promise<void> | Observable<boolean> | boolean;
 
-  getStepLabel(): string;
+  previous?(): Promise<void> | Observable<boolean> | boolean;
+
+  loading?(): boolean;
+
+  getNextStepLabel?(): string;
+
+  getPreviousStepLabel?(): string;
+
 }
+
