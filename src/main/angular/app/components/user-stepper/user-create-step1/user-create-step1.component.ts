@@ -17,18 +17,18 @@ export class UserCreateStep1Component implements OnInit, Step {
   }
 
   ngOnInit(): void {
+    console.log("init UserCreateStep1Component");
     this.formGroup.patchValue(this.userStepperService.data);
   }
 
   next(): Promise<void> {
-
     return new Promise((resolve, reject) => {
       Object.assign(this.userStepperService.data, this.formGroup.value);
-      reject();
+      resolve();
     });
   }
 
-  getStepLabel(): string {
+  getNextStepLabel(): string {
     return "Step uno!"
   }
 

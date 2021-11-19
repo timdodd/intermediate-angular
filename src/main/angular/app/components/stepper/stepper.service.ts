@@ -52,15 +52,10 @@ export class StepperService {
       currentStepComponent.next().then(_ => {
         this.gotoStepIndex(currentStepIndex + 1);
       }, _ => {
-
       });
     } else {
       this.gotoStepIndex(currentStepIndex + 1);
     }
-  }
-
-  complete(): void {
-
   }
 
   hasNext(): boolean {

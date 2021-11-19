@@ -1,10 +1,8 @@
-import {Observable} from "rxjs";
-
 export interface Step {
 
-  next?(): Promise<void> | Observable<boolean> | boolean;
+  next?(): Promise<void>;
 
-  previous?(): Promise<void> | Observable<boolean> | boolean;
+  previous?(): Promise<void>;
 
   loading?(): boolean;
 

@@ -19,10 +19,6 @@ export class StepperControlsComponent {
     this.stepperService.next();
   }
 
-  complete(): void {
-    this.stepperService.complete();
-  }
-
   hasNext(): boolean {
     return this.stepperService.hasNext();
   }

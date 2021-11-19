@@ -10,7 +10,7 @@ export class UserCreateStep3Component implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("STEP 3");
+    console.log("init UserCreateStep3Component");
   }
 
 }

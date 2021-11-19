@@ -1,7 +1,7 @@
 
 <div class="flex">
-  <button class="btn btn-secondary" (click)="previous()" *ngIf="hasPrevious">Previous</button>
-  <button class="btn btn-primary" (click)="next()" *ngIf="hasNext">Next</button>
-  <button class="btn btn-primary" (click)="complete()" *ngIf="!hasNext">Complete</button>
+  <button class="btn btn-secondary" (click)="previous()" *ngIf="hasPrevious()">Previous</button>
+  <button class="btn btn-primary" (click)="next()" *ngIf="hasNext()">Next</button>
+  <button class="btn btn-primary" (click)="next()" *ngIf="!hasNext()">Complete</button>
 </div>
 
